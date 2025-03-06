@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Instagram, Mail, ArrowRight, Dumbbell, Calculator, Users, Star, Menu, X, CheckCircle2, MessageCircle, Activity } from 'lucide-react';
 import Contact from './pages/Contact';
@@ -9,6 +9,44 @@ function App() {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const NavigationLinks = () => {
+    const navigate = useNavigate();
+
+    const handleNavClick = (sectionId: string) => {
+      navigate('/');
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        element?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    };
+
+    return (
+      <>
+        <button 
+          onClick={() => handleNavClick('about')} 
+          className="text-zinc-400 hover:text-white transition-colors"
+        >
+          About
+        </button>
+        <button 
+          onClick={() => handleNavClick('training')} 
+          className="text-zinc-400 hover:text-white transition-colors"
+        >
+          Training
+        </button>
+        <button 
+          onClick={() => handleNavClick('pricing')} 
+          className="text-zinc-400 hover:text-white transition-colors"
+        >
+          Pricing
+        </button>
+        <Link to="/contact" className="text-zinc-400 hover:text-white transition-colors">
+          Contact
+        </Link>
+      </>
+    );
   };
 
   const createEmailLink = (type: string) => {
@@ -379,10 +417,7 @@ Current fitness goals:`;
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-8">
-              <a href="#about" className="text-zinc-400 hover:text-white transition-colors">About</a>
-              <a href="#training" className="text-zinc-400 hover:text-white transition-colors">Training</a>
-              <a href="#pricing" className="text-zinc-400 hover:text-white transition-colors">Pricing</a>
-              <Link to="/contact" className="text-zinc-400 hover:text-white transition-colors">Contact</Link>
+              <NavigationLinks />
             </div>
           </div>
 
@@ -394,35 +429,8 @@ Current fitness goals:`;
               exit={{ opacity: 0, y: -20 }}
               className="md:hidden bg-black/95 border-b border-zinc-800"
             >
-              <div className="px-4 py-4 space-y-4">
-                <a 
-                  href="#about" 
-                  className="block text-zinc-400 hover:text-white transition-colors"
-                  onClick={toggleMenu}
-                >
-                  About
-                </a>
-                <a 
-                  href="#training" 
-                  className="block text-zinc-400 hover:text-white transition-colors"
-                  onClick={toggleMenu}
-                >
-                  Training
-                </a>
-                <a 
-                  href="#pricing" 
-                  className="block text-zinc-400 hover:text-white transition-colors"
-                  onClick={toggleMenu}
-                >
-                  Pricing
-                </a>
-                <Link
-                  to="/contact"
-                  className="block text-zinc-400 hover:text-white transition-colors"
-                  onClick={toggleMenu}
-                >
-                  Contact
-                </Link>
+              <div className="px-4 py-4 flex flex-col space-y-4">
+                <NavigationLinks />
               </div>
             </motion.div>
           )}
