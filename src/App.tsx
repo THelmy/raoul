@@ -1,7 +1,8 @@
-{/* The complete updated App.tsx content */}
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Instagram, Mail, ArrowRight, Dumbbell, Calculator, Users, Star, Menu, X, CheckCircle2 } from 'lucide-react';
+import { Instagram, Mail, ArrowRight, Dumbbell, Calculator, Users, Star, Menu, X, CheckCircle2, Phone, MessageCircle } from 'lucide-react';
+import Contact from './pages/contact';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -10,71 +11,58 @@ function App() {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  return (
-    <div className="min-h-screen min-w-screen bg-black text-white">
-      <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm bg-black/80 border-b border-zinc-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 h-[80px] flex items-center justify-between">
-          <a href="/" className="font-bold text-2xl">RAOUL</a>
-          
-          {/* Mobile Menu Button */}
-          <button 
-            onClick={toggleMenu}
-            className="md:hidden text-white hover:text-zinc-300 transition-colors"
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+  const createEmailLink = (type: string) => {
+    const email = 'fitprotocol.info@gmail.com';
+    let subject = '';
+    let body = '';
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            <a href="#about" className="text-zinc-400 hover:text-white transition-colors">About</a>
-            <a href="#training" className="text-zinc-400 hover:text-white transition-colors">Training</a>
-            <a href="#pricing" className="text-zinc-400 hover:text-white transition-colors">Pricing</a>
-            <a href="#contact" className="text-zinc-400 hover:text-white transition-colors">Contact</a>
-          </div>
-        </div>
+    switch (type) {
+      case 'journey':
+        subject = 'Ready to Start My Fitness Journey';
+        body = 'Hi, I\'m interested in starting my fitness journey with you. I would like to learn more about your training programs.';
+        break;
+      case 'custom-training':
+        subject = 'Inquiry about Custom Training Program';
+        body = 'Hi, I\'m interested in getting a custom training program. I would like to learn more about how you can help me achieve my fitness goals.';
+        break;
+      case 'nutrition':
+        subject = 'Request for Nutrition Calculation';
+        body = `Hi, I would like to request a nutrition calculation. Here are my details:
 
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <motion.div 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="md:hidden bg-black/95 border-b border-zinc-800"
-          >
-            <div className="px-4 py-4 space-y-4">
-              <a 
-                href="#about" 
-                className="block text-zinc-400 hover:text-white transition-colors"
-                onClick={toggleMenu}
-              >
-                About
-              </a>
-              <a 
-                href="#training" 
-                className="block text-zinc-400 hover:text-white transition-colors"
-                onClick={toggleMenu}
-              >
-                Training
-              </a>
-              <a 
-                href="#pricing" 
-                className="block text-zinc-400 hover:text-white transition-colors"
-                onClick={toggleMenu}
-              >
-                Pricing
-              </a>
-              <a 
-                href="#contact" 
-                className="block text-zinc-400 hover:text-white transition-colors"
-                onClick={toggleMenu}
-              >
-                Contact
-              </a>
-            </div>
-          </motion.div>
-        )}
-      </nav>
+Gender: 
+Weight: 
+Height: 
+Age: 
+Activity Level (Sedentary/Light/Moderate/Very Active): 
 
+Current fitness goals:`;
+        break;
+      case 'online-training':
+        subject = 'Interest in Online Training';
+        body = 'Hi, I\'m interested in your online training program. I would like to learn more about how it works and how you can help me achieve my fitness goals.';
+        break;
+      case 'starter':
+        subject = 'Interest in Starter Plan';
+        body = 'Hi, I\'m interested in your Starter Plan (£99/month). I would like to get started with the program.';
+        break;
+      case 'transform':
+        subject = 'Interest in Transform Plan';
+        body = 'Hi, I\'m interested in your Transform Plan (£199/month). I would like to get started with the program.';
+        break;
+      case 'elite':
+        subject = 'Interest in Elite Plan';
+        body = 'Hi, I\'m interested in your Elite Plan (£299/month). I would like to get started with the program.';
+        break;
+      default:
+        subject = 'General Inquiry';
+        body = 'Hi, I\'m interested in learning more about your services.';
+    }
+
+    return `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
+
+  function HomePage() {
+    return (
       <main>
         {/* Hero Section */}
         <section className="relative h-[90vh] flex items-center">
@@ -95,7 +83,10 @@ function App() {
               <p className="text-lg sm:text-xl text-zinc-300 mb-7 max-w-2xl">
                 Elite personal training and nutrition coaching for those who demand results! 
               </p>
-              <a href="#start" className="inline-flex items-center gap-2 bg-white text-black px-6 sm:px-8 py-4 rounded-full font-medium hover:bg-zinc-200 transition-colors">
+              <a 
+                href={createEmailLink('journey')} 
+                className="inline-flex items-center gap-2 bg-white text-black px-6 sm:px-8 py-4 rounded-full font-medium hover:bg-zinc-200 transition-colors"
+              >
                 Start Your Journey <ArrowRight size={25} />
               </a>
             </motion.div>
@@ -153,7 +144,10 @@ function App() {
                 <Dumbbell size={40} className="mb-6 text-white" />
                 <h3 className="text-xl font-bold mb-4">Custom Training</h3>
                 <p className="text-zinc-400 mb-6">Personalized workout plans tailored to your goals, schedule, and fitness level.</p>
-                <a href="#training" className="text-white flex items-center gap-2 hover:gap-4 transition-all">
+                <a 
+                  href={createEmailLink('custom-training')} 
+                  className="text-white flex items-center gap-2 hover:gap-4 transition-all"
+                >
                   Learn More <ArrowRight size={16} />
                 </a>
               </motion.div>
@@ -165,7 +159,10 @@ function App() {
                 <Calculator size={40} className="mb-6 text-white" />
                 <h3 className="text-xl font-bold mb-4">Calculate Nutrition</h3>
                 <p className="text-zinc-400 mb-6">Get your personalized macro breakdown and meal plans for optimal results.</p>
-                <a href="#nutrition" className="text-white flex items-center gap-2 hover:gap-4 transition-all">
+                <a 
+                  href={createEmailLink('nutrition')} 
+                  className="text-white flex items-center gap-2 hover:gap-4 transition-all"
+                >
                   Request Calculation <ArrowRight size={16} />
                 </a>
               </motion.div>
@@ -177,7 +174,10 @@ function App() {
                 <Users size={40} className="mb-6 text-white" />
                 <h3 className="text-xl font-bold mb-4">Online Training</h3>
                 <p className="text-zinc-400 mb-6">Expert guidance and support, anywhere in the world. Start your transformation today.</p>
-                <a href="#online" className="text-white flex items-center gap-2 hover:gap-4 transition-all">
+                <a 
+                  href={createEmailLink('online-training')} 
+                  className="text-white flex items-center gap-2 hover:gap-4 transition-all"
+                >
                   Get Started <ArrowRight size={16} />
                 </a>
               </motion.div>
@@ -201,7 +201,8 @@ function App() {
                     "Basic nutrition guidelines",
                     "Weekly check-ins",
                     "Email support"
-                  ]
+                  ],
+                  type: 'starter'
                 },
                 {
                   name: "Transform",
@@ -216,7 +217,8 @@ function App() {
                     "Progress tracking",
                     "Form check videos"
                   ],
-                  featured: true
+                  featured: true,
+                  type: 'transform'
                 },
                 {
                   name: "Elite",
@@ -231,7 +233,8 @@ function App() {
                     "Advanced progress tracking",
                     "Supplement guidance",
                     "Lifestyle coaching"
-                  ]
+                  ],
+                  type: 'elite'
                 }
               ].map((plan, index) => (
                 <motion.div
@@ -271,9 +274,10 @@ function App() {
                       </li>
                     ))}
                   </ul>
-                  <button 
+                  <a 
+                    href={createEmailLink(plan.type)}
                     className={`
-                      w-full py-3 rounded-full font-medium transition-colors
+                      block w-full py-3 rounded-full font-medium transition-colors text-center
                       ${plan.featured
                         ? 'bg-black text-white hover:bg-zinc-800'
                         : 'bg-white text-black hover:bg-zinc-200'
@@ -281,7 +285,7 @@ function App() {
                     `}
                   >
                     Get Started
-                  </button>
+                  </a>
                 </motion.div>
               ))}
             </div>
@@ -343,7 +347,7 @@ function App() {
               Ready to start your transformation? Take the first step towards the body you've always wanted.
             </p>
             <motion.a
-              href="#contact"
+              href={createEmailLink('journey')}
               whileHover={{ scale: 1.05 }}
               className="inline-flex items-center gap-2 bg-white text-black px-6 sm:px-8 py-4 rounded-full font-medium hover:bg-zinc-200 transition-colors"
             >
@@ -352,23 +356,100 @@ function App() {
           </div>
         </section>
       </main>
+    );
+  }
 
-      <footer className="bg-black py-8 sm:py-12 border-t border-zinc-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="flex justify-between items-center">
-            <div className="font-bold text-2xl">RAOUL</div>
-            <div className="flex gap-6">
-              <a href="https://instagram.com" className="text-zinc-400 hover:text-white transition-colors" target="_blank" rel="noopener noreferrer">
-                <Instagram size={24} />
-              </a>
-              <a href="mailto:contact@raoul.fitness" className="text-zinc-400 hover:text-white transition-colors">
-                <Mail size={24} />
-              </a>
+  return (
+    <Router>
+      <div className="min-h-screen min-w-screen bg-black text-white">
+        <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm bg-black/80 border-b border-zinc-800">
+          <div className="max-w-7xl mx-auto px-4 sm:px-8 h-[80px] flex items-center justify-between">
+            <Link to="/" className="font-bold text-2xl">RAOUL</Link>
+            
+            {/* Mobile Menu Button */}
+            <button 
+              onClick={toggleMenu}
+              className="md:hidden text-white hover:text-zinc-300 transition-colors"
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center gap-8">
+              <a href="#about" className="text-zinc-400 hover:text-white transition-colors">About</a>
+              <a href="#training" className="text-zinc-400 hover:text-white transition-colors">Training</a>
+              <a href="#pricing" className="text-zinc-400 hover:text-white transition-colors">Pricing</a>
+              <Link to="/contact" className="text-zinc-400 hover:text-white transition-colors">Contact</Link>
             </div>
           </div>
-        </div>
-      </footer>
-    </div>
+
+          {/* Mobile Navigation */}
+          {isMenuOpen && (
+            <motion.div 
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="md:hidden bg-black/95 border-b border-zinc-800"
+            >
+              <div className="px-4 py-4 space-y-4">
+                <a 
+                  href="#about" 
+                  className="block text-zinc-400 hover:text-white transition-colors"
+                  onClick={toggleMenu}
+                >
+                  About
+                </a>
+                <a 
+                  href="#training" 
+                  className="block text-zinc-400 hover:text-white transition-colors"
+                  onClick={toggleMenu}
+                >
+                  Training
+                </a>
+                <a 
+                  href="#pricing" 
+                  className="block text-zinc-400 hover:text-white transition-colors"
+                  onClick={toggleMenu}
+                >
+                  Pricing
+                </a>
+                <Link
+                  to="/contact"
+                  className="block text-zinc-400 hover:text-white transition-colors"
+                  onClick={toggleMenu}
+                >
+                  Contact
+                </Link>
+              </div>
+            </motion.div>
+          )}
+        </nav>
+
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+
+        <footer className="bg-black py-8 sm:py-12 border-t border-zinc-800">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="flex justify-between items-center">
+              <div className="font-bold text-2xl">RAOUL</div>
+              <div className="flex gap-6">
+                <a href="https://instagram.com" className="text-zinc-400 hover:text-white transition-colors" target="_blank" rel="noopener noreferrer">
+                  <Instagram size={24} />
+                </a>
+                <a href="https://wa.me/31620681996" className="text-zinc-400 hover:text-white transition-colors" target="_blank" rel="noopener noreferrer">
+                  <MessageCircle size={24} />
+                </a>
+                <a href="mailto:fitprotocol.info@gmail.com" className="text-zinc-400 hover:text-white transition-colors">
+                  <Mail size={24} />
+                </a>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </Router>
   );
 }
 
