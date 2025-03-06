@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="min-h-screen min-w-screen bg-black text-white">
       <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm bg-black/80 border-b border-zinc-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-[80px] flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 h-[80px] flex items-center justify-between">
           <a href="/" className="font-bold text-2xl">RAOUL</a>
           
           {/* Mobile Menu Button */}
@@ -25,9 +25,9 @@ function App() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
+            <a href="#about" className="text-zinc-400 hover:text-white transition-colors">About</a>
             <a href="#training" className="text-zinc-400 hover:text-white transition-colors">Training</a>
             <a href="#results" className="text-zinc-400 hover:text-white transition-colors">Results</a>
-            <a href="#about" className="text-zinc-400 hover:text-white transition-colors">About</a>
             <a href="#contact" className="text-zinc-400 hover:text-white transition-colors">Contact</a>
           </div>
         </div>
@@ -41,6 +41,13 @@ function App() {
             className="md:hidden bg-black/95 border-b border-zinc-800"
           >
             <div className="px-4 py-4 space-y-4">
+            <a 
+                href="#about" 
+                className="block text-zinc-400 hover:text-white transition-colors"
+                onClick={toggleMenu}
+              >
+                About
+              </a>
               <a 
                 href="#training" 
                 className="block text-zinc-400 hover:text-white transition-colors"
@@ -56,13 +63,6 @@ function App() {
                 Results
               </a>
               <a 
-                href="#about" 
-                className="block text-zinc-400 hover:text-white transition-colors"
-                onClick={toggleMenu}
-              >
-                About
-              </a>
-              <a 
                 href="#contact" 
                 className="block text-zinc-400 hover:text-white transition-colors"
                 onClick={toggleMenu}
@@ -76,34 +76,74 @@ function App() {
 
       <main>
         {/* Hero Section */}
-        <section className="relative h-screen flex items-center">
+
+        <section className="relative h-[90vh] flex items-center"> {/* [80vh] is used to adjust the height of the section */}
           <div className="absolute inset-0 z-0">
             <img 
-              src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80"
+              src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1024&q=80"
               alt="Hero background"
               className="w-full h-full object-cover opacity-50"
             />
           </div>
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-4xl sm:text-6xl font-bold mb-6">Transform Your Body.<br />Transform Your Life.</h1>
-              <p className="text-lg sm:text-xl text-zinc-300 mb-8 max-w-2xl">
-                Elite personal training and nutrition coaching for those who demand results. 
-                Join hundreds of successful transformations and unlock your full potential.
+              <h1 className="text-3xl sm:text-4xl font-bold mb-5">Transform Your Body.<br />Transform Your Life.</h1>
+              <p className="text-lg sm:text-xl text-zinc-300 mb-7 max-w-2xl">
+                Elite personal training and nutrition coaching for those who demand results! 
               </p>
               <a href="#start" className="inline-flex items-center gap-2 bg-white text-black px-6 sm:px-8 py-4 rounded-full font-medium hover:bg-zinc-200 transition-colors">
-                Start Your Journey <ArrowRight size={20} />
+                Start Your Journey <ArrowRight size={25} />
               </a>
             </motion.div>
           </div>
         </section>
 
+{/* About Section */}
+<section id="about" className="py-16 sm:py-24 bg-zinc-900">
+          <div className="max-w-7xl mx-auto px-4 sm:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 sm:gap-16 items-center">
+              <div>
+                <img 
+                  src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                  alt="Raoul"
+                  className="rounded-2xl"
+                />
+              </div>
+              <div>
+                <h2 className="text-3xl sm:text-4xl font-bold mb-6">About Me</h2>
+                <p className="text-zinc-300 mb-6">
+                  With over a decade of experience in body transformation and elite fitness coaching, 
+                  I've helped hundreds of clients achieve their dream physiques and unlock their full potential.
+                </p>
+                <p className="text-zinc-300 mb-8">
+                  My approach combines cutting-edge training techniques with personalized nutrition strategies, 
+                  ensuring sustainable results that last a lifetime.
+                </p>
+                <div className="grid grid-cols-3 gap-6 sm:gap-8 text-center">
+                  <div>
+                    <div className="text-2xl sm:text-3xl font-bold mb-2">20+</div>
+                    <div className="text-zinc-400">Transformations</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl sm:text-3xl font-bold mb-2">5+</div>
+                    <div className="text-zinc-400">Years Experience</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl sm:text-3xl font-bold mb-2">100%</div>
+                    <div className="text-zinc-400">Commitment</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Services Grid */}
-        <section className="py-16 sm:py-24 bg-zinc-900">
+        <section id="training" className="py-16 sm:py-24 bg-zinc-900">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
               <motion.div
@@ -155,18 +195,8 @@ function App() {
                 className="relative aspect-[3/4] overflow-hidden rounded-2xl"
               >
                 <img 
-                  src="https://images.unsplash.com/photo-1583500557349-fb5238f8d946?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                  src="https://images.unsplash.com/photo-1601422407692-ec4eeec1d9b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
                   alt="Transformation 1"
-                  className="w-full h-full object-cover"
-                />
-              </motion.div>
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="relative aspect-[3/4] overflow-hidden rounded-2xl"
-              >
-                <img 
-                  src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                  alt="Transformation 2"
                   className="w-full h-full object-cover"
                 />
               </motion.div>
@@ -180,49 +210,20 @@ function App() {
                   className="w-full h-full object-cover"
                 />
               </motion.div>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                className="relative aspect-[3/4] overflow-hidden rounded-2xl"
+              >
+                <img 
+                  src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                  alt="Transformation 2"
+                  className="w-full h-full object-cover"
+                />
+              </motion.div>
             </div>
           </div>
         </section>
 
-        {/* About Section */}
-        <section id="about" className="py-16 sm:py-24 bg-zinc-900">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 sm:gap-16 items-center">
-              <div>
-                <img 
-                  src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                  alt="Raoul"
-                  className="rounded-2xl"
-                />
-              </div>
-              <div>
-                <h2 className="text-3xl sm:text-4xl font-bold mb-6">About Me</h2>
-                <p className="text-zinc-300 mb-6">
-                  With over a decade of experience in body transformation and elite fitness coaching, 
-                  I've helped hundreds of clients achieve their dream physiques and unlock their full potential.
-                </p>
-                <p className="text-zinc-300 mb-8">
-                  My approach combines cutting-edge training techniques with personalized nutrition strategies, 
-                  ensuring sustainable results that last a lifetime.
-                </p>
-                <div className="grid grid-cols-3 gap-6 sm:gap-8 text-center">
-                  <div>
-                    <div className="text-2xl sm:text-3xl font-bold mb-2">500+</div>
-                    <div className="text-zinc-400">Transformations</div>
-                  </div>
-                  <div>
-                    <div className="text-2xl sm:text-3xl font-bold mb-2">10+</div>
-                    <div className="text-zinc-400">Years Experience</div>
-                  </div>
-                  <div>
-                    <div className="text-2xl sm:text-3xl font-bold mb-2">100%</div>
-                    <div className="text-zinc-400">Commitment</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* Testimonials */}
         <section className="py-16 sm:py-24 bg-black">
@@ -265,7 +266,7 @@ function App() {
         </section>
 
         {/* CTA Section */}
-        <section className="relative py-24 sm:py-32 bg-zinc-900">
+        <section id="cta" className="relative py-24 sm:py-32 bg-zinc-900">
           <div className="absolute inset-0 z-0">
             <img 
               src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80"
@@ -294,7 +295,7 @@ function App() {
           <div className="flex justify-between items-center">
             <div className="font-bold text-2xl">RAOUL</div>
             <div className="flex gap-6">
-              <a href="https://instagram.com" className="text-zinc-400 hover:text-white transition-colors">
+              <a href="https://instagram.com" className="text-zinc-400 hover:text-white transition-colors" target="_blank" rel="noopener noreferrer">
                 <Instagram size={24} />
               </a>
               <a href="mailto:contact@raoul.fitness" className="text-zinc-400 hover:text-white transition-colors">
