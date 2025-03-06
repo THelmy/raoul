@@ -12,6 +12,9 @@ export default {
           900: '#18181b',
         },
       },
+      minWidth: {
+        screen: '320px', // Minimum width for typical mobile phones
+      },
     },
   },
   plugins: [],
