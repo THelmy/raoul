@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Instagram, Mail, ArrowRight, Dumbbell, Calculator, Users, Star, Menu, X, CheckCircle2, Phone, MessageCircle } from 'lucide-react';
-import Contact from './pages/contact';
+import { Instagram, Mail, ArrowRight, Dumbbell, Calculator, Users, Star, Menu, X, CheckCircle2, MessageCircle, Activity } from 'lucide-react';
+import Contact from './pages/Contact';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -100,18 +100,18 @@ Current fitness goals:`;
               <div>
                 <img 
                   src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                  alt="Raoul"
+                  alt="Fit Protocol Trainer"
                   className="rounded-2xl"
                 />
               </div>
               <div>
-                <h2 className="text-3xl sm:text-4xl font-bold mb-6">About Me</h2>
+                <h2 className="text-3xl sm:text-4xl font-bold mb-6">About Us</h2>
                 <p className="text-zinc-300 mb-6">
                   With over a decade of experience in body transformation and elite fitness coaching, 
-                  I've helped hundreds of clients achieve their dream physiques and unlock their full potential.
+                  we've helped hundreds of clients achieve their dream physiques and unlock their full potential.
                 </p>
                 <p className="text-zinc-300 mb-8">
-                  My approach combines cutting-edge training techniques with personalized nutrition strategies, 
+                  Our approach combines cutting-edge training techniques with personalized nutrition strategies, 
                   ensuring sustainable results that last a lifetime.
                 </p>
                 <div className="grid grid-cols-3 gap-6 sm:gap-8 text-center">
@@ -295,17 +295,17 @@ Current fitness goals:`;
         {/* Testimonials */}
         <section className="py-16 sm:py-24 bg-black">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-12 sm:mb-16 text-center">What My Clients Say</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-12 sm:mb-16 text-center">What Our Clients Say</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
               {[
                 {
                   name: "James Wilson",
-                  text: "Working with Raoul transformed not just my body, but my entire approach to fitness and nutrition.",
+                  text: "Working with Fit Protocol transformed not just my body, but my entire approach to fitness and nutrition.",
                   rating: 5
                 },
                 {
                   name: "Sarah Parker",
-                  text: "The results I achieved in 12 weeks exceeded my expectations. Raoul's knowledge and support are unmatched.",
+                  text: "The results I achieved in 12 weeks exceeded my expectations. Their knowledge and support are unmatched.",
                   rating: 5
                 },
                 {
@@ -364,7 +364,10 @@ Current fitness goals:`;
       <div className="min-h-screen min-w-screen bg-black text-white">
         <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm bg-black/80 border-b border-zinc-800">
           <div className="max-w-7xl mx-auto px-4 sm:px-8 h-[80px] flex items-center justify-between">
-            <Link to="/" className="font-bold text-2xl">RAOUL</Link>
+            <Link to="/" className="flex items-center gap-2 font-bold text-2xl">
+              <Activity size={28} className="text-green-500" />
+              <span>FIT PROTOCOL</span>
+            </Link>
             
             {/* Mobile Menu Button */}
             <button 
@@ -433,7 +436,10 @@ Current fitness goals:`;
         <footer className="bg-black py-8 sm:py-12 border-t border-zinc-800">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="flex justify-between items-center">
-              <div className="font-bold text-2xl">RAOUL</div>
+              <div className="flex items-center gap-2 font-bold text-2xl">
+                <Activity size={28} className="text-green-500" />
+                <span>FIT PROTOCOL</span>
+              </div>
               <div className="flex gap-6">
                 <a href="https://instagram.com" className="text-zinc-400 hover:text-white transition-colors" target="_blank" rel="noopener noreferrer">
                   <Instagram size={24} />
