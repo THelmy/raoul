@@ -1,6 +1,7 @@
+{/* The complete updated App.tsx content */}
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Instagram, Mail, ArrowRight, Dumbbell, Calculator, Users, Star, Menu, X } from 'lucide-react';
+import { Instagram, Mail, ArrowRight, Dumbbell, Calculator, Users, Star, Menu, X, CheckCircle2 } from 'lucide-react';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -27,7 +28,7 @@ function App() {
           <div className="hidden md:flex items-center gap-8">
             <a href="#about" className="text-zinc-400 hover:text-white transition-colors">About</a>
             <a href="#training" className="text-zinc-400 hover:text-white transition-colors">Training</a>
-            <a href="#results" className="text-zinc-400 hover:text-white transition-colors">Results</a>
+            <a href="#pricing" className="text-zinc-400 hover:text-white transition-colors">Pricing</a>
             <a href="#contact" className="text-zinc-400 hover:text-white transition-colors">Contact</a>
           </div>
         </div>
@@ -41,7 +42,7 @@ function App() {
             className="md:hidden bg-black/95 border-b border-zinc-800"
           >
             <div className="px-4 py-4 space-y-4">
-            <a 
+              <a 
                 href="#about" 
                 className="block text-zinc-400 hover:text-white transition-colors"
                 onClick={toggleMenu}
@@ -56,11 +57,11 @@ function App() {
                 Training
               </a>
               <a 
-                href="#results" 
+                href="#pricing" 
                 className="block text-zinc-400 hover:text-white transition-colors"
                 onClick={toggleMenu}
               >
-                Results
+                Pricing
               </a>
               <a 
                 href="#contact" 
@@ -76,8 +77,7 @@ function App() {
 
       <main>
         {/* Hero Section */}
-
-        <section className="relative h-[90vh] flex items-center"> {/* [80vh] is used to adjust the height of the section */}
+        <section className="relative h-[90vh] flex items-center">
           <div className="absolute inset-0 z-0">
             <img 
               src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1024&q=80"
@@ -102,8 +102,8 @@ function App() {
           </div>
         </section>
 
-{/* About Section */}
-<section id="about" className="py-16 sm:py-24 bg-zinc-900">
+        {/* About Section */}
+        <section id="about" className="py-16 sm:py-24 bg-zinc-900">
           <div className="max-w-7xl mx-auto px-4 sm:px-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 sm:gap-16 items-center">
               <div>
@@ -166,7 +166,7 @@ function App() {
                 <h3 className="text-xl font-bold mb-4">Calculate Nutrition</h3>
                 <p className="text-zinc-400 mb-6">Get your personalized macro breakdown and meal plans for optimal results.</p>
                 <a href="#nutrition" className="text-white flex items-center gap-2 hover:gap-4 transition-all">
-                  Calculate Now <ArrowRight size={16} />
+                  Request Calculation <ArrowRight size={16} />
                 </a>
               </motion.div>
 
@@ -185,45 +185,108 @@ function App() {
           </div>
         </section>
 
-        {/* Results Section */}
-        <section id="results" className="py-16 sm:py-24 bg-black">
+        {/* Pricing Section */}
+        <section id="pricing" className="py-16 sm:py-24 bg-black">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-12 sm:mb-16 text-center">Real Results</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="relative aspect-[3/4] overflow-hidden rounded-2xl"
-              >
-                <img 
-                  src="https://images.unsplash.com/photo-1601422407692-ec4eeec1d9b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                  alt="Transformation 1"
-                  className="w-full h-full object-cover"
-                />
-              </motion.div>
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="relative aspect-[3/4] overflow-hidden rounded-2xl sm:col-span-2 md:col-span-1"
-              >
-                <img 
-                  src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                  alt="Transformation 3"
-                  className="w-full h-full object-cover"
-                />
-              </motion.div>
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="relative aspect-[3/4] overflow-hidden rounded-2xl"
-              >
-                <img 
-                  src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                  alt="Transformation 2"
-                  className="w-full h-full object-cover"
-                />
-              </motion.div>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-12 sm:mb-16 text-center">Training Plans</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                {
+                  name: "Starter",
+                  price: "£99",
+                  period: "per month",
+                  description: "Perfect for beginners ready to start their fitness journey",
+                  features: [
+                    "Personalized workout program",
+                    "Basic nutrition guidelines",
+                    "Weekly check-ins",
+                    "Email support"
+                  ]
+                },
+                {
+                  name: "Transform",
+                  price: "£199",
+                  period: "per month",
+                  description: "Most popular choice for serious results",
+                  features: [
+                    "Advanced training program",
+                    "Detailed nutrition plan",
+                    "Bi-weekly video calls",
+                    "24/7 WhatsApp support",
+                    "Progress tracking",
+                    "Form check videos"
+                  ],
+                  featured: true
+                },
+                {
+                  name: "Elite",
+                  price: "£299",
+                  period: "per month",
+                  description: "For those who demand the absolute best",
+                  features: [
+                    "Premium training program",
+                    "Custom meal plans",
+                    "Weekly 1-1 coaching",
+                    "Priority support",
+                    "Advanced progress tracking",
+                    "Supplement guidance",
+                    "Lifestyle coaching"
+                  ]
+                }
+              ].map((plan, index) => (
+                <motion.div
+                  key={index}
+                  whileHover={{ scale: 1.05 }}
+                  className={`
+                    relative p-8 rounded-2xl border
+                    ${plan.featured 
+                      ? 'bg-white text-black border-transparent' 
+                      : 'bg-black border-zinc-800'
+                    }
+                  `}
+                >
+                  {plan.featured && (
+                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-green-500 text-white px-4 py-1 rounded-full text-sm font-medium">
+                      Most Popular
+                    </div>
+                  )}
+                  <div className="text-xl font-bold mb-2">{plan.name}</div>
+                  <div className="flex items-baseline gap-1 mb-4">
+                    <span className="text-3xl font-bold">{plan.price}</span>
+                    <span className={plan.featured ? 'text-black/60' : 'text-zinc-400'}>
+                      {plan.period}
+                    </span>
+                  </div>
+                  <p className={`mb-6 ${plan.featured ? 'text-black/80' : 'text-zinc-400'}`}>
+                    {plan.description}
+                  </p>
+                  <ul className="space-y-3 mb-8">
+                    {plan.features.map((feature, i) => (
+                      <li key={i} className="flex items-center gap-2">
+                        <CheckCircle2 
+                          size={18} 
+                          className={plan.featured ? 'text-green-500' : 'text-white'} 
+                        />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <button 
+                    className={`
+                      w-full py-3 rounded-full font-medium transition-colors
+                      ${plan.featured
+                        ? 'bg-black text-white hover:bg-zinc-800'
+                        : 'bg-white text-black hover:bg-zinc-200'
+                      }
+                    `}
+                  >
+                    Get Started
+                  </button>
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
-
 
         {/* Testimonials */}
         <section className="py-16 sm:py-24 bg-black">
