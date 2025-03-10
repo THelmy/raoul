@@ -175,7 +175,7 @@ Current fitness goals:`;
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 sm:gap-16 items-center">
                   <div>
                     <img 
-                      src="Raoul.png"
+                      src="/Raoul.png"
                       alt="Raoul - Fit Protocol Trainer"
                       className="rounded-2xl"
                     />
