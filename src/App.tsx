@@ -434,7 +434,12 @@ Current fitness goals:`;
               whileHover={{ scale: 1.05 }}
               className="inline-flex items-center gap-2 bg-white text-black px-6 sm:px-8 py-4 rounded-full font-medium hover:bg-zinc-200 transition-colors"
             >
-              Start Your Training <ArrowRight size={20} />
+              <a 
+                    href={createEmailLink('journey')} 
+                    className="inline-flex items-center gap-2 bg-white text-black px-6 sm:px-8 py-4 rounded-full font-medium hover:bg-zinc-200 transition-colors"
+                  >
+                    Start Your Journey <ArrowRight size={25} />
+                  </a>
             </motion.a>
           </div>
         </section>
