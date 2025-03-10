@@ -171,8 +171,8 @@ Current fitness goals:`;
 
             {/* About Section */}
             <section id="about" className="py-16 sm:py-24 bg-zinc-900">
-              <div className="max-w-7xl mx-auto px-4 sm:px-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 sm:gap-16 items-center">
+              <div className="max-w-5xl mx-auto px-4 sm:px-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 sm:gap-10 items-center">
                   <div>
                     <img 
                       src="/Raoul.png"
@@ -414,6 +414,31 @@ Current fitness goals:`;
                 </div>
               </div>
             </section>
+
+            {/* CTA Section */}
+        <section className="relative py-24 sm:py-32 bg-zinc-900">
+          <div className="absolute inset-0 z-0">
+            <img 
+              src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80"
+              alt="Background"
+              className="w-full h-full object-cover opacity-20"
+            />
+          </div>
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 text-center">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-6">Become Your Strongest Version</h2>
+            <p className="text-lg sm:text-xl text-zinc-300 mb-8 max-w-2xl mx-auto">
+              Ready to start your transformation? Take the first step towards the body you've always wanted.
+            </p>
+            <motion.a
+              href="#contact"
+              whileHover={{ scale: 1.05 }}
+              className="inline-flex items-center gap-2 bg-white text-black px-6 sm:px-8 py-4 rounded-full font-medium hover:bg-zinc-200 transition-colors"
+            >
+              Start Your Training <ArrowRight size={20} />
+            </motion.a>
+          </div>
+        </section>
+
           </main>
         } />
       </Routes>
