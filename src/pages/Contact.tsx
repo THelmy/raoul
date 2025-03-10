@@ -39,7 +39,7 @@ function Contact() {
 
             {/* Instagram */}
             <motion.a
-              href="https://instagram.com"
+              href="https://www.instagram.com/fitprotocol_estmmxxiv/"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
